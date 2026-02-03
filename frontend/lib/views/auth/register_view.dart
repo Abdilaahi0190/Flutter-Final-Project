@@ -3,7 +3,7 @@ import '../../core/theme.dart';
 import '../../services/auth_service.dart';
 import 'login_view.dart';
 
-// Qaybta UI-ga ee is-diwaangelinta (Register View)
+
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -12,18 +12,18 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  final _formKey = GlobalKey<FormState>(); // Key loogu talagalay xaqiijinta foomka
+  final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _authService = AuthService();
   
-  String _selectedRole = 'user'; // Doorka macmiilka (Default: User)
+  String _selectedRole = 'user';
   bool _isLoading = false;
 
-  // Function-ka maamula is-diwaangelinta (Register Logic)
+
   void _handleRegister() async {
-    if (!_formKey.currentState!.validate()) return; // Hubi haddii xogta sax tahay
+    if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
     
@@ -37,7 +37,7 @@ class _RegisterViewState extends State<RegisterView> {
     setState(() => _isLoading = false);
 
     if (result['success']) {
-      // Haddii uu guulaysto, u dir bogga hore ama ku soo celi Login-ka
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registration Successful! Please Login.')),
       );
@@ -46,7 +46,7 @@ class _RegisterViewState extends State<RegisterView> {
         MaterialPageRoute(builder: (context) => const LoginView()),
       );
     } else {
-      // Haddii uu guuldarraysto, tuso khaladka dhacay
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(result['error'])),
       );
@@ -60,25 +60,25 @@ class _RegisterViewState extends State<RegisterView> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Form(
-            key: _formKey, // Ku xidh Form-ka
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Create Account', // English UI
+                  'Create Account',
                   style: Theme.of(context).textTheme.displayLarge,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Join the Job Portal network', // English UI
+                  'Join the Job Portal network',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.textLight),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 48),
                 
-                // Name Field
+
                 TextFormField(
                   controller: _nameController,
                   decoration: const InputDecoration(
@@ -96,7 +96,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Email Field
+
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -118,7 +118,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Password Field
+
                 TextFormField(
                   controller: _passwordController,
                   decoration: const InputDecoration(
@@ -140,7 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Role Selection
+
                 DropdownButtonFormField<String>(
                   value: _selectedRole,
                   decoration: const InputDecoration(
@@ -160,7 +160,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 const SizedBox(height: 24),
                 
-                // Sign Up Button
+
                 ElevatedButton(
                   onPressed: _isLoading ? null : _handleRegister,
                   child: _isLoading 
@@ -169,7 +169,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 const SizedBox(height: 16),
                 
-                // Back to Login
+
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(

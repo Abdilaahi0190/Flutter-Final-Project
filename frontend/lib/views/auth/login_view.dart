@@ -3,7 +3,7 @@ import '../../core/theme.dart';
 import '../../services/auth_service.dart';
 import 'register_view.dart';
 
-// Qaybta UI-ga ee soo galista (Login View)
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -12,15 +12,15 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final _formKey = GlobalKey<FormState>(); // Key loogu talagalay xaqiijinta foomka
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _authService = AuthService();
   bool _isLoading = false;
 
-  // Function-ka maamula soo galista (Login Logic)
+
   void _handleLogin() async {
-    if (!_formKey.currentState!.validate()) return; // Hubi haddii xogta sax tahay
+    if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
     
@@ -32,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
     setState(() => _isLoading = false);
 
     if (result['success']) {
-      // Navigate to Home
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login Successful!')),
       );
@@ -50,19 +50,19 @@ class _LoginViewState extends State<LoginView> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Form(
-            key: _formKey, // Ku xidh Form-ka
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Welcome Back', // Welcome (English)
+                  'Welcome Back',
                   style: Theme.of(context).textTheme.displayLarge,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Please enter your credentials', // Sign in (English)
+                  'Please enter your credentials',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.textLight),
                   textAlign: TextAlign.center,
                 ),
@@ -111,7 +111,7 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: _isLoading ? null : _handleLogin,
                   child: _isLoading 
                     ? const CircularProgressIndicator(color: Colors.white) 
-                    : const Text('Login'), // Login (English)
+                    : const Text('Login'),
                 ),
                 const SizedBox(height: 16),
                 TextButton(
